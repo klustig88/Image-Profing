@@ -22,7 +22,8 @@
     
   </div>
   
-  <% @spins.name.each do |item|
+  <%  @spins = Spin.all %>
+  <% @spins.each do |item|
   next if item == '.' or item == '..' or item == '.DS_Store' %>
   
   
@@ -30,7 +31,7 @@
 
 
        <div class="viewer">
-          <a href="/img/<%= item %>/<%= item %>-big-01-01.jpg" class="Magic360" data-magic360-options="columns: 12; rows: 3; filename: <%= item %>-small-{row}-{col}.jpg"; large-filename: "<%= item %>-big-{row}-{col}.jpg;" ><img src="/img/<%= item %>/<%= item %>-small-01-01.jpg"/></a> 
+          <a href="/img/<%= item.name %>/<%= item.name %>-big-01-01.jpg" class="Magic360" data-magic360-options="columns: 12; rows: 3; filename: <%= item.name %>-small-{row}-{col}.jpg"; large-filename: "<%= item.name %>-big-{row}-{col}.jpg;" ><img src="/img/<%= item.name %>/<%= item.name %>-small-01-01.jpg"/></a> 
 
 
        </div> 

@@ -28,7 +28,7 @@ get '/spins' do
 
 erb :spins
 
-@spins = Spin.all
+
 
  # @images = Dir["/Macintosh HD/Users/DeltaTauChi/Desktop/proofing_code/public"]
 
