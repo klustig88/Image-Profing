@@ -18,19 +18,8 @@ post '/login' do
 end
 
 get '/spins' do
-# @a = ["135464",
-# "140882",
-# "test000003"]
-
-
-
-
 
 erb :spins
-
-
-
- # @images = Dir["/Macintosh HD/Users/DeltaTauChi/Desktop/proofing_code/public"]
 
 end
 
@@ -43,12 +32,93 @@ get '/upload'  do
 end
 
 
-post '/upload' do
+post '/upload/dimension' do
 
-   # @project = Upload.new(params[:create_project])
-   # @project.save
+        @array = 0
+        @spin = Spin.all
+        @spin.each do |spins| 
+
+
+
+
+end
+
  
-  erb :success
+  erb :upload
+
+
+end
+
+
+post '/upload/images' do
+
+  
+
+
+  Dir.foreach('./public/img') do |item|
+  next if item == '.' or item == '..' or item == 'Thumbs.db'  or item == '.DS_Store'
+
+  @spin = Spin.new(name: item  )
+  @spin.save 
+
+  end
+
+
+
+  @all = Spin.all
+  @all.each do |item| 
+      @array = 0
+  Dir.foreach('./public/img/' + item.name) do |number|
+          next if number == '.' or number == '..' or number == 'Thumbs.db' or number == '.DS_Store'
+
+
+          @array += 1
+
+    end
+
+    puts @array
+
+     if @array == 72 
+           
+          @column = "12" 
+          @row = "3"
+          
+      end
+      
+
+    item.column = @column
+    item.row = @row 
+
+    item.save
+  
+  end
+  
+   
+
+
+  
+      
+
+
+      # if 
+      #      @array.size == 72 
+      #     @column = "24" && @row = "3" 
+      #  elsif 
+      #     @array.size == 48 
+      #      @column = "24" && @row = "2" 
+      #  else
+      #     @array.size == 24 
+      #      @column = "24" && @row = "1" 
+      #  end 
+   
+
+
+
+
+  
+
+ 
+  erb :upload
 
 
 end
@@ -73,8 +143,7 @@ post '/admin/login' do
   if @admin.try(:authenticate, params[:admin][:password])
     erb :admin
   else
-    flash[:error] = "Username or Password are incorrect, please try again.
-"
+    flash[:error] = "Username or Password are incorrect, please try again."
   end
 end
 

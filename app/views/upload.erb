@@ -6,23 +6,31 @@
 
 	 <div class="header">
 
-	 <form action='/upload' method='POST'>
-  <label> Client <input type='text' name='create_project[client]'></label><br>
-
-  <% Dir.foreach('./public/img') do |item|
-  next if item == '.' or item == '..' or item == '.DS_Store' %>
-
-  <% @spin = Spin.new(name: item) %>
-  <% @spin.save %>
-
-  <% end %>
+	 <form action='/upload/images' method='POST'>
+  <label> Images <input type='text' name='create_project[client]'></label><br>
 
 
 
 
-  <br>
-<input type='submit' value='Upload'>
-</form>
+    <br>
+  <input type='submit' value='Upload'>
+  </form>
+
+
+
+
+   <form action='/upload/dimension' method='POST'>
+  <label> Dimensions <input type='text' name='create_project[client]'></label><br>
+
+
+
+
+
+
+
+    <br>
+  <input type='submit' value='Upload'>
+  </form>
 
 
 	 <div>
